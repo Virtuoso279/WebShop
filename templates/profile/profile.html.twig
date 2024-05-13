@@ -4,7 +4,8 @@
 
 {% block body %}
     <h1>Welcome {{ userInfo.fullName }} !</h1>
-    
+    <a href="{{ path('catalog') }}">Catalog</a><br>
+    <a href="{{ path('orders') }}">My orders</a>
     <div>
         <p>Email: {{ userInfo.email }}</p>
     </div>

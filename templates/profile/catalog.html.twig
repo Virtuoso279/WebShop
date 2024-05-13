@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalog{% endblock %}
+
+{% block body %}
+    <h1>Catalog products</h1>
+    {% for product in products %}
+        <div>
+            <strong>Product: {{ product.name }}</strong>
+            <p>Price: $ {{ product.priceProduct }}</p>
+            <a href="{{ path('cart_products', {id: product.id}) }}">
+                Add product
+            </a>
+            <hr>
+        </div>
+        <br>
+    {% endfor %}
+
+    <h3>Cart info:</h3>
+
+    {% if cart_list == "Empty cart" %}
+        <p>Empty cart</p>
+    {% else %}
+
+        {% for productId, quantity in cart_list %}
+            {% set productCart = products|filter(p => p.id == productId)|first %}
+            <span><strong>Product:</strong> {{ productCart.name }}| <strong>Quantity:</strong> {{ quantity }}</span>
+            <a href="{{ path('cart_products_remove', {id: productId}) }}">
+                Delete product
+            </a><br>
+        {% endfor %}
+
+        <p>Total price: $ {{cart_price}}</p>
+        <a href="{{ path('make_order', {totalPrice: cart_price}) }}">
+            Make order
+        </a>
+    {% endif %}
+    
+    <br><br><br>
+    <a href="{{ path('profile_home', {userId}) }}">Go to my Profile</a>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block body %}
+    <h1>My orders</h1>
+
+    {% if orders_info == "Empty list of orders" %}
+        <p>Empty list of orders</p>
+    {% else %}
+
+        {% for order in orders_info %}
+            <span><strong>Order ID:</strong> {{ order.id }} |</span> 
+            <span><strong>Total price:</strong> {{ order.totalPrice }} |</span>
+            <span><strong>Created at:</strong> {{ order.createdAt|date('Y-m-d H:i:s') }}</span>
+            <br>
+        {% endfor %}
+        
+    {% endif %}
+    
+    <br><br><br>
+    <a href="{{ path('profile_home', {userId}) }}">Go to my Profile</a>
+{% endblock %}
