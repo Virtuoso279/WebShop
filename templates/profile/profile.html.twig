@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <h1>Welcome {{ userInfo.fullName }} !</h1>
+    
+    <div>
+        <p>Email: {{ userInfo.email }}</p>
+    </div>
+    <a href="{{ path('app_logout') }}">Log Out</a>
+{% endblock %}
